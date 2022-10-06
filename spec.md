@@ -26,17 +26,32 @@ TODO
 ### Authority
 
 - Authority modules must implement the `Authority` interface defined in
-[solmate/src/auth/Auth.sol][solmate-auth].
+  [solmate/src/auth/Auth.sol][solmate-auth].
+- By default, each club is deployed with a single `Authority` used by the club
+  and all of it's deployed contracts.
 
-#### ClubAuthority.sol
+#### TokenRolesAuthority.sol
 
-- Target agnostic role-based authority designed to enable flexible management
-  of roles and capabilities within a club.
-- Based primarily on `RolesAuthority` and `MultiRolesAuthority`.
-- Option to grant virtual roles based on token ownership.
-- Option to define target-specific capability overrides.
-- By default, each club is deployed with a single `ClubAuthority` proxy which
-  is used by the club and all of it's deployed contracts.
+- Target aware role-based authority.
+- Virtual roles based on token ownership.
+- Target specific role capabilities.
+- Based on the `RolesAuthority` contract.
+
+#### TokenMultiRolesAuthority.sol
+
+- Target agnostic role-based authority.
+- Virtual roles based on token ownership.
+- Target agnostic role capabilities.
+- Based on the `MultiRolesAuthority` contract.
+
+#### UniversalAuthority.sol
+
+- Universal role-based authority.
+- Target agnostic role capabilities.
+- Target specific capability overlay.
+- Durable roles granted by address.
+- Virtual roles based on token ownership.
+- Based-on `MultiRolesAuthority` contract.
 
 ## Libs
 
@@ -52,15 +67,13 @@ TODO
 
 [solmate/src/auth/authorities/RolesAuthority.sol][solmate-rolesauthority]
 
-- Target aware role-based authority implementation.
-- Used as the basis for the `ClubAuthority` above.
+- Target aware role-based authority.
 
 ### MultiRolesAuthority
 
 [solmate/src/auth/authorities/MultiRolesAuthority.sol][solmate-multirolesauthority]
 
-- Target agnostic role-based authority implementation.
-- Used as the basis for the `ClubAuthority` above.
+- Target agnostic role-based authority.
 
 ## Secutity model
 
